@@ -145,6 +145,13 @@
                         </button>
                         {{svg-jar "arrow-right"}}
                     </li>
+                    <li class="nav-list-item">
+                        <button type="button"  {{action "showSubview" "social-publishing-data"}} data-test-button="social-publishing-data">
+                            <b>Social publishing</b>
+                            <span>Customize social publishing settings</span>
+                        </button>
+                        {{svg-jar "arrow-right"}}
+                    </li>
                     {{#if (and this.post.isPost this.showEmailNewsletter (not-eq this.settings.membersSignupAccess "none") (not-eq this.settings.editorDefaultEmailRecipients "disabled"))}}
                         <li class="nav-list-item">
                             <button type="button" {{action "showSubview" "email-settings"}} data-test-button="email-settings">
@@ -404,6 +411,100 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    {{/if}}
+
+                    {{#if (eq this.subview "social-publishing-data")}}
+                        <div class="settings-menu-header subview">
+                            <button aria-label="Back" class="back settings-menu-header-action" data-test-button="close-psm-subview" type="button" {{action "closeSubview"}}>{{svg-jar "arrow-left"}}<span class="hidden">Back</span></button>
+                            <h4>Social publishing</h4>
+                            <div style="width:23px;"></div>
+                        </div>
+
+                        <div class="settings-menu-content">
+                            <form {{action "discardEnter" on="submit"}}>
+                                <GhImageUploaderWithPreview
+                                    @image={{this.post.socialShareImage1}}
+                                    @text="Add image 1"
+                                    @allowUnsplash={{true}}
+                                    @update={{action "setSocialShareImage1"}}
+                                    @remove={{action "clearSocialShareImage1"}}
+                                />
+                                <GhImageUploaderWithPreview
+                                    @image={{this.post.socialShareImage2}}
+                                    @text="Add image 2"
+                                    @allowUnsplash={{true}}
+                                    @update={{action "setSocialShareImage2"}}
+                                    @remove={{action "clearSocialShareImage2"}}
+                                />
+                                <GhImageUploaderWithPreview
+                                    @image={{this.post.socialShareImage3}}
+                                    @text="Add image 3"
+                                    @allowUnsplash={{true}}
+                                    @update={{action "setSocialShareImage3"}}
+                                    @remove={{action "clearSocialShareImage3"}}
+                                />
+                                <GhImageUploaderWithPreview
+                                    @image={{this.post.socialShareImage4}}
+                                    @text="Add image 4"
+                                    @allowUnsplash={{true}}
+                                    @update={{action "setSocialShareImage4"}}
+                                    @remove={{action "clearSocialShareImage4"}}
+                                />
+                                <div class="form-group for-checkbox">
+                                    <label class="checkbox" for="shareOnFacebook" {{action "toggleShareOnFacebook" bubbles="false"}}>
+                                        <input
+                                            type="checkbox"
+                                            checked={{this.post.shareOnFacebook}}
+                                            class="gh-input post-settings-shareOnFacebook"
+                                            onclick={{action (mut this.post.shareOnFacebook) value="target.checked"}}
+                                            data-test-checkbox="shareOnFacebook"
+                                        >
+                                        <span class="input-toggle-component"></span>
+                                        <p>Share on Facebook</p>
+                                    </label>
+                                </div>
+                                <div class="form-group for-checkbox">
+                                    <label class="checkbox" for="shareOnInstagram" {{action "toggleShareOnInstagram" bubbles="false"}}>
+                                        <input
+                                            type="checkbox"
+                                            checked={{this.post.shareOnInstagram}}
+                                            class="gh-input post-settings-shareOnInstagram"
+                                            onclick={{action (mut this.post.shareOnInstagram) value="target.checked"}}
+                                            data-test-checkbox="shareOnInstagram"
+                                        >
+                                        <span class="input-toggle-component"></span>
+                                        <p>Share on Instagram</p>
+                                    </label>
+                                </div>
+                                <div class="form-group for-checkbox">
+                                    <label class="checkbox" for="shareOnTwitter" {{action "toggleShareOnTwitter" bubbles="false"}}>
+                                        <input
+                                            type="checkbox"
+                                            checked={{this.post.shareOnTwitter}}
+                                            class="gh-input post-settings-shareOnTwitter"
+                                            onclick={{action (mut this.post.shareOnTwitter) value="target.checked"}}
+                                            data-test-checkbox="shareOnTwitter"
+                                        >
+                                        <span class="input-toggle-component"></span>
+                                        <p>Share on Twitter</p>
+                                    </label>
+                                </div>
+                                <div class="form-group for-checkbox">
+                                    <label class="checkbox" for="shareOnLinkedin" {{action "toggleShareOnLinkedin" bubbles="false"}}>
+                                        <input
+                                            type="checkbox"
+                                            checked={{this.post.shareOnLinkedin}}
+                                            class="gh-input post-settings-shareOnLinkedin"
+                                            onclick={{action (mut this.post.shareOnLinkedin) value="target.checked"}}
+                                            data-test-checkbox="shareOnLinkedin"
+                                        >
+                                        <span class="input-toggle-component"></span>
+                                        <p>Share on Linkedin</p>
+                                    </label>
                                 </div>
 
                             </form>

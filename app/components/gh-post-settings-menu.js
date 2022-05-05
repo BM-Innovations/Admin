@@ -119,6 +119,30 @@ export default class GhPostSettingsMenu extends Component {
     )
         showEmailNewsletter;
 
+    @or(
+        'post.socialShareImage1',
+        'post.featureImage'
+    )
+        socialShareImage1;
+
+    @or(
+        'post.socialShareImage2',
+        'post.featureImage'
+    )
+        socialShareImage2;
+
+    @or(
+        'post.socialShareImage3',
+        'post.featureImage'
+    )
+        socialShareImage3;
+
+    @or(
+        'post.socialShareImage4',
+        'post.featureImage'
+    )
+        socialShareImage4;
+
     @computed('metaTitleScratch', 'post.titleScratch')
     get seoTitle() {
         return this.metaTitleScratch || this.post.titleScratch || '(Untitled)';
@@ -583,6 +607,182 @@ export default class GhPostSettingsMenu extends Component {
     setSidebarWidthFromElement(element) {
         const width = element.getBoundingClientRect().width;
         this.setSidebarWidthVariable(width);
+    }
+
+    @action
+    setSocialShareImage1(image) {
+        this.set('post.socialShareImage1', image);
+
+        if (this.get('post.isNew')) {
+            return;
+        }
+
+        this.savePostTask.perform().catch((error) => {
+            this.showError(error);
+            this.post.rollbackAttributes();
+        });
+    }
+
+    @action
+    clearSocialShareImage1() {
+        this.set('post.socialShareImage1', '');
+
+        if (this.get('post.isNew')) {
+            return;
+        }
+
+        this.savePostTask.perform().catch((error) => {
+            this.showError(error);
+            this.post.rollbackAttributes();
+        });
+    }
+
+    @action
+    setSocialShareImage2(image) {
+        this.set('post.socialShareImage2', image);
+
+        if (this.get('post.isNew')) {
+            return;
+        }
+
+        this.savePostTask.perform().catch((error) => {
+            this.showError(error);
+            this.post.rollbackAttributes();
+        });
+    }
+
+    @action
+    clearSocialShareImage2() {
+        this.set('post.socialShareImage2', '');
+
+        if (this.get('post.isNew')) {
+            return;
+        }
+
+        this.savePostTask.perform().catch((error) => {
+            this.showError(error);
+            this.post.rollbackAttributes();
+        });
+    }
+
+    @action
+    setSocialShareImage3(image) {
+        this.set('post.socialShareImage3', image);
+
+        if (this.get('post.isNew')) {
+            return;
+        }
+
+        this.savePostTask.perform().catch((error) => {
+            this.showError(error);
+            this.post.rollbackAttributes();
+        });
+    }
+
+    @action
+    clearSocialShareImage3() {
+        this.set('post.socialShareImage3', '');
+
+        if (this.get('post.isNew')) {
+            return;
+        }
+
+        this.savePostTask.perform().catch((error) => {
+            this.showError(error);
+            this.post.rollbackAttributes();
+        });
+    }
+
+    @action
+    setSocialShareImage4(image) {
+        this.set('post.socialShareImage4', image);
+
+        if (this.get('post.isNew')) {
+            return;
+        }
+
+        this.savePostTask.perform().catch((error) => {
+            this.showError(error);
+            this.post.rollbackAttributes();
+        });
+    }
+
+    @action
+    clearSocialShareImage4() {
+        this.set('post.socialShareImage4', '');
+
+        if (this.get('post.isNew')) {
+            return;
+        }
+
+        this.savePostTask.perform().catch((error) => {
+            this.showError(error);
+            this.post.rollbackAttributes();
+        });
+    }
+
+    @action
+    toggleShareOnLinkedin() {
+        this.toggleProperty('post.shareOnLinkedin');
+
+        // If this is a new post.  Don't save the post.  Defer the save
+        // to the user pressing the save button
+        if (this.get('post.isNew')) {
+            return;
+        }
+
+        this.savePostTask.perform().catch((error) => {
+            this.showError(error);
+            this.post.rollbackAttributes();
+        });
+    }
+
+    @action
+    toggleShareOnInstagram() {
+        this.toggleProperty('post.shareOnInstagram');
+
+        // If this is a new post.  Don't save the post.  Defer the save
+        // to the user pressing the save button
+        if (this.get('post.isNew')) {
+            return;
+        }
+
+        this.savePostTask.perform().catch((error) => {
+            this.showError(error);
+            this.post.rollbackAttributes();
+        });
+    }
+
+    @action
+    toggleShareOnTwitter() {
+        this.toggleProperty('post.shareOnTwitter');
+
+        // If this is a new post.  Don't save the post.  Defer the save
+        // to the user pressing the save button
+        if (this.get('post.isNew')) {
+            return;
+        }
+
+        this.savePostTask.perform().catch((error) => {
+            this.showError(error);
+            this.post.rollbackAttributes();
+        });
+    }
+
+    @action
+    toggleShareOnFacebook() {
+        this.toggleProperty('post.shareOnFacebook');
+
+        // If this is a new post.  Don't save the post.  Defer the save
+        // to the user pressing the save button
+        if (this.get('post.isNew')) {
+            return;
+        }
+
+        this.savePostTask.perform().catch((error) => {
+            this.showError(error);
+            this.post.rollbackAttributes();
+        });
     }
 
     showError(error) {
